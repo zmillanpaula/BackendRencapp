@@ -1,12 +1,18 @@
 package generation.rencapp.models;
 
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.List;
+@Entity
+@Table(name = "tramites")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Builder
 
 public class Tramite {
     @Id
@@ -15,7 +21,11 @@ public class Tramite {
 
     private String nombre;
 
-    @ManyToMany(mappedBy = "tramites")
+    @ManyToMany(mappedBy = "tramite")
     private List<Funcionario> funcionarios;
+
+    @OneToMany(mappedBy = "tramite", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Agendamiento> agendamientos;
+
 
 }

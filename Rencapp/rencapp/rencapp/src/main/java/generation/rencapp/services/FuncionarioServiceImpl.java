@@ -28,7 +28,9 @@ import java.util.List;
     }
 
     @Transactional
-    public Funcionario saveFuncionario(Funcionario funcionario) {
-        return funcionarioRepository.save(funcionario);
+    public Funcionario saveFuncionario(Funcionario nuevoFuncionario) {
+        return funcionarioRepository.save(nuevoFuncionario);
     }
+
+    //metodo para mostrar agendamientos con tipo de tramite
 }

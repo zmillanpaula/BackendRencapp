@@ -2,7 +2,6 @@ package generation.rencapp.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import generation.rencapp.models.Vecino;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -34,9 +33,9 @@ public class Agendamiento {
     private String motivo;
 
     @Enumerated(EnumType.STRING)
-    private estadoCita estado;
+    private estadoAgendamiento estado;
 
-    private enum estadoCita {
+    private enum estadoAgendamiento {
         AGENDADA,
         CANCELADA
     }
@@ -47,15 +46,18 @@ public class Agendamiento {
     @JoinColumn(name = "vecino_id", nullable = false)
     private Vecino vecino;
 
-    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "funcionario_id", nullable = false)
-    private Funcionario funcionario;
+    @JoinColumn(name = "tramite_id", nullable = false)
+    private Tramite tramite;
+
+    @ManyToOne
+    @JoinColumn(name = "agendamientos_funcionarios", nullable = false)
+    private Tramite funcionario;
 
     //manytomany
-    @ManyToMany
-    @JoinTable(name = "agendamientos_funcionarios", joinColumns = @JoinColumn(name = "funcionario_id"), inverseJoinColumns = @JoinColumn(name = "agendamiento_id"))
-    private List<Funcionario> funcionarios;
+   // @ManyToMany
+   // @JoinTable(name = "agendamientos_funcionarios", joinColumns = @JoinColumn(name = "agendamiento_id"), inverseJoinColumns = @JoinColumn(name = "funcionario_id"))
+   // private List<Funcionario> funcionarios;
 
 
 }

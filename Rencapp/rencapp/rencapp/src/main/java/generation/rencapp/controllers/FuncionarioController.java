@@ -3,7 +3,6 @@ package generation.rencapp.controllers;
 import generation.rencapp.models.Funcionario;
 import generation.rencapp.models.Usuario;
 import generation.rencapp.services.FuncionarioServiceImpl;
-import generation.rencapp.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +12,7 @@ import java.util.List;
 
 
 //CONTROLADORES VAN A CONTROLAR LAS VISTAS
-
+/*
 @Controller
 
     @RequestMapping("api/funcionario")
@@ -60,3 +59,4 @@ import java.util.List;
     }
 
 }
+*/

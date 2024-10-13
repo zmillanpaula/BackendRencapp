@@ -19,11 +19,11 @@ public class FuncionarioRestController {
     private FuncionarioServiceImpl funcionarioServiceImpl;
 
     @GetMapping("/funcionario")
-    public Funcionario findDoctorById(@RequestParam Long id) {
+    public Funcionario findFuncionarioById(@RequestParam Long id) {
         Funcionario funcionarioSeleccionado = funcionarioServiceImpl.findById(id);
         System.out.println(funcionarioSeleccionado.getDepartamento());
         return funcionarioSeleccionado;
     }
-//faltaria conectar esa funcion con el enum cierto? hablo por aca porque mi hija esta llorando jajaja
+
 
 }

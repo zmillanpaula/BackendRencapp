@@ -8,29 +8,35 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @Service
 public class VecinoServiceImpl implements VecinoService {
-//Inyeccion de dependencias
+    //Inyeccion de dependencias
 //agregar metodos
     @Autowired
     private VecinoRepository vecinoRepository;
 
     @Override
-    public List<Vecino> findAll(){
+    public List<Vecino> findAllVecino(){
+        return vecinoRepository.findAll();
     }
 
     @Override
     public Vecino findById(Long id) {
         //Llama al repository y al método para buscar por ID
-        return VecinoService.findById(id).get();
+        return vecinoRepository.findById(id).get();
     }
 
     @Transactional
-    public  Vecino saveVecino(Vecino vecino){
-        return VecinoService.save(vecino);
+    public Vecino saveVecino(Vecino nuevoVecino){
+        return vecinoRepository.save(nuevoVecino);
     }
+
+    //metodo para mostrar agendamientos
 
 
 
 }
+
 

@@ -1,12 +1,14 @@
 package generation.rencapp.controllers;
-
+/*
+import generation.rencapp.models.TipoUsuario;
+import generation.rencapp.models.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-public class UsuarioController {
 
 
 @Controller
@@ -33,7 +35,7 @@ public class UsuarioController {
         usuarioService.saveUsuario(usuarioNuevo);
 
         // redirigir al formulario adecuado
-        if (usuarioNuevo.getTipoUsuario() == TipoUsuario.FUNCIONARIO {
+        if (usuarioNuevo.getTipoUsuario() == TipoUsuario.FUNCIONARIO) {
             return "redirect:/doctores/crear?usuarioId=" + usuarioNuevo.getId(); // Redirige a crear doctor
         } else if (usuarioNuevo.getTipoUsuario() == TipoUsuario.FUNCIONARIO) {
             return "redirect:/pacientes/crear?usuarioId=" + usuarioNuevo.getId(); // Redirige a crear paciente
@@ -42,3 +44,6 @@ public class UsuarioController {
 
         return "registro-usuario";
     }
+}
+
+ */

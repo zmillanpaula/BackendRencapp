@@ -3,9 +3,7 @@ package generation.rencapp.services;
 import generation.rencapp.repositories.AgendamientoRepository;
 import generation.rencapp.repositories.VecinoRepository;
 import generation.rencapp.models.Agendamiento;
-import generation.rencapp.repositories.AgendamientoRepository;
 import generation.rencapp.repositories.FuncionarioRepository;
-import generation.rencapp.repositories.VecinoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +12,7 @@ import java.time.LocalTime;
 
 //Anotaciones
 @Service
-public class AgendamientoServiceImpl {
+public class AgendamientoServiceImpl implements AgendamientoService{
 
     //Inyección de dependencias
     @Autowired
@@ -29,31 +27,35 @@ public class AgendamientoServiceImpl {
     @Autowired
     private HorarioService horarioService;
 
-    //Método para agendar cita
-    public Agendamiento agendarCita(Long doctorId, Long pacienteId, LocalDate fecha, LocalTime hora) {
-        //1-) Validar si la hora esta contenida dentro del intervalo y guardamos el resultado en una variable
-        boolean esValida = horarioService.validarAgendamientoDentroDelHorario(Funcionario, fecha, hora);
+    @Autowired
+    private HorarioServiceImpl horarioServiceImpl;
 
-        if (!esValida) {
+
+    //Método para agendar cita
+    public Agendamiento agendar(Long funcionarioId, Long vecinoId, LocalDate fecha, LocalTime hora) {
+        //1-) Validar si la hora esta contenida dentro del intervalo y guardamos el resultado en una variable
+        boolean esValido = horarioServiceImpl.validarAgendamientoDentroDelHorario(funcionarioId, fecha, hora);
+
+        if (!esValido) {
             throw new IllegalArgumentException("La hora indicada no está disponible");
         }
 
         //2-) Validar que no exista otra cita con el doctor a la misma hora
-        boolean existeCita = citaRepository.existsByDoctorIdAndFechaAndHora(doctorId, fecha, hora);
+        boolean existeAgendamiento = agendamientoRepository.existsByFuncionarioIdAndFechaAndHora(funcionarioId, fecha, hora);
 
-        if (existeCita) {
+        if (existeAgendamiento) {
             throw new IllegalArgumentException("La hora indicada ya está ocupada");
         }
 
         //3-) Generar la cita y guardar
-        Cita nuevaCita = Cita.builder()
-                .doctor(doctorRepository.findById(doctorId).get())
-                .paciente(pacienteRepository.findById(pacienteId).get())
+        Agendamiento nuevoAgendamiento = Agendamiento.builder()
+                .vecino(vecinoRepository.findById(vecinoId).get())
+                .funcionario(funcionarioRepository.findById(funcionarioId).get())
                 .fecha(fecha)
                 .hora(hora)
                 .build();
 
-        return nuevaCita;
+        return nuevoAgendamiento;
     }
 
 
