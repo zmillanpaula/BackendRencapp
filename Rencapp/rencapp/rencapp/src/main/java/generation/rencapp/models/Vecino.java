@@ -40,10 +40,6 @@ public class Vecino {
 
     //relacion con usuario
 
-    @OneToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Vecino vecino;
-
 
     //co relacionar el metodo para el vecino, cascade se superpone en accion individual
     @OneToMany(mappedBy = "vecino", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

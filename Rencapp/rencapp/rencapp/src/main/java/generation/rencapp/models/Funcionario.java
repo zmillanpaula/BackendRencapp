@@ -30,9 +30,6 @@ public class Funcionario {
 
     //co relacionar el metodo para el FUNCIONARIO, cascade se superpone en accion individual
 
-    @OneToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Funcionario funcionario;
 
     @ManyToMany(mappedBy= "funcionarios")
     private List<Agendamiento> agendamientos;

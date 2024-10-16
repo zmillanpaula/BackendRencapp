@@ -52,7 +52,7 @@ public class Agendamiento {
 
     @ManyToOne
     @JoinColumn(name = "agendamientos_funcionarios", nullable = false)
-    private Tramite funcionario;
+    private Funcionario funcionario;
 
     //manytomany
    // @ManyToMany
