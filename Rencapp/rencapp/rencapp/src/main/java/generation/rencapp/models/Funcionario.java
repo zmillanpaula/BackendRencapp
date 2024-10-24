@@ -9,33 +9,38 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "funcionarios")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Builder
+@DiscriminatorValue("FUNCIONARIO")
 
-public class Funcionario {
+public class Funcionario extends Usuario{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @Column(nullable = false)
     private String departamento;
+
+    private Boolean atencionOnline;
 
     /***************RELACIONES**********************/
 
     //co relacionar el metodo para el FUNCIONARIO, cascade se superpone en accion individual
 
 
-    @ManyToMany(mappedBy= "funcionarios")
-    private List<Agendamiento> agendamientos;
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Horario> horarios;
+
+    @ManyToMany
+    @JoinTable(//Al tener una relacion de N a N, indicamos nombre de la tabla relacional
+            name = "departamentos_funcionarios",
+            joinColumns = @JoinColumn(name = "funcionario_id"),//Nombre de la columna que lleva la llave foránea
+            inverseJoinColumns = @JoinColumn(name = "departamento_id"))//Nombre de la columna de  la otra entidad
+    private List<Departamento> departamentos;
+
 
 
 
@@ -43,7 +48,6 @@ public class Funcionario {
     //para saber en que momento llego/auditoria
 
     @CreationTimestamp
-    @Column(updatable = false)
     private LocalDateTime createdAt;
 
     //para actualizar

@@ -6,26 +6,20 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
-@Table (name = "vecinos")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @Builder
+@DiscriminatorValue("VECINO")
 //anotaciones de acceso a atributos (getter y setter)
 //constructor vacío y constructor lleno
 //generar entidad vecino
-public class Vecino {
+public class Vecino  extends Usuario{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column
     private String motivoDeConsulta;
 
     //atributos de auditoría (creación y actualización de objetos)
@@ -38,11 +32,9 @@ public class Vecino {
 
     /***************RELACIONES**********************/
 
-    //relacion con usuario
 
-
-    //co relacionar el metodo para el vecino, cascade se superpone en accion individual
-    @OneToMany(mappedBy = "vecino", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Agendamiento> agendamientos;
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
 }

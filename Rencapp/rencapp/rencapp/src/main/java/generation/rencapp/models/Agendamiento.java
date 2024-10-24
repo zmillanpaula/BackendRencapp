@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -24,11 +25,9 @@ public class Agendamiento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd")
-    private LocalDate fecha;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
-    private LocalTime hora;
+    @JsonFormat(pattern = "YYYY-M-DD-HH:mm")
+    private LocalDateTime fechaHora;
 
     private String motivo;
 
@@ -46,6 +45,7 @@ public class Agendamiento {
     @JoinColumn(name = "vecino_id", nullable = false)
     private Vecino vecino;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "tramite_id", nullable = false)
     private Tramite tramite;

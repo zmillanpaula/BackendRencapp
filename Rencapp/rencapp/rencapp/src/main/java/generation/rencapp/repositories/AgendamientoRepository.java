@@ -12,5 +12,15 @@ import java.time.LocalTime;
 public interface AgendamientoRepository extends JpaRepository<Agendamiento, Long> {
 
     boolean existsByFuncionarioIdAndFechaAndHora(Long funcionarioId, LocalDate fecha, LocalTime hora);
+
+    //Crear métodos que trabajen con querys nativas, con SQL
+    /**@Query(value = "select * from citas c where c.doctor_id = 1?", nativeQuery = true)
+     @Query(value = "select * from citas c where c.doctor_id = :doctorId and c.fecha = :fecha", nativeQuery = true)
+     List<Cita> findAllCitaByDoctorId(@Param("doctorId") Long doctorId, @Param("fecha") LocalDate fecha);**/
+
+    //JPQL
+
+
+
 }
 

@@ -25,13 +25,11 @@ public class AgendamientoServiceImpl implements AgendamientoService{
     private VecinoRepository vecinoRepository;
 
     @Autowired
-    private HorarioService horarioService;
-
-    @Autowired
     private HorarioServiceImpl horarioServiceImpl;
 
 
     //Método para agendar cita
+    @Override
     public Agendamiento agendar(Long funcionarioId, Long vecinoId, LocalDate fecha, LocalTime hora) {
         //1-) Validar si la hora esta contenida dentro del intervalo y guardamos el resultado en una variable
         boolean esValido = horarioServiceImpl.validarAgendamientoDentroDelHorario(funcionarioId, fecha, hora);
@@ -51,12 +49,15 @@ public class AgendamientoServiceImpl implements AgendamientoService{
         Agendamiento nuevoAgendamiento = Agendamiento.builder()
                 .vecino(vecinoRepository.findById(vecinoId).get())
                 .funcionario(funcionarioRepository.findById(funcionarioId).get())
-                .fecha(fecha)
-                .hora(hora)
+                /*.fechaHora(fechaHora)     preguntar*/
                 .build();
+
+        agendamientoRepository.save(nuevoAgendamiento);
 
         return nuevoAgendamiento;
     }
+
+   // public void Agendamiento eliminarAgendamiento() {}
 
 
 }

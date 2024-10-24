@@ -6,7 +6,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,6 +16,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_usuario", discriminatorType = DiscriminatorType.STRING)
 
 
 public class Usuario {
@@ -29,11 +31,6 @@ public class Usuario {
         private String nombre;
 
         private String apellido;
-
-        private int numeroTelefono;
-
-        private String direccion;
-
 
         @Column(nullable = false, unique = true)//Restricciones para la columna, no permitir null y sólo registros únicos
         private String email;
@@ -54,6 +51,15 @@ public class Usuario {
 
         /******ESPACIO PARA OTROS ATRIBUTOS*******/
         //Relaciones en Java se indican mediante anotaciones para que Hibernate cree las llaves foráneas en las tablas correspondientes
+
+        @JsonIgnore
+        @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)//Relación de 1 a 1
+        private Funcionario funcionario;
+
+
+        @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+        private Vecino vecino;
+
 
 
 
