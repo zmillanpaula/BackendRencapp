@@ -1,5 +1,6 @@
 package generation.rencapp.api;
 
+import com.google.api.Http;
 import generation.rencapp.models.Agendamiento;
 import generation.rencapp.services.AgendamientoServiceImpl;
 import generation.rencapp.services.NotificacionService;
@@ -9,8 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 //Anotaciones
 @RestController
@@ -54,7 +57,23 @@ public class AgendamientoRestController {
 
     }
 
+    @GetMapping("/{agendamientoId}/")
+    public ResponseEntity<Agendamiento> verPorID(@PathVariable Long agendamientoId) {
+        return new ResponseEntity<>(agendamientoService.findById(agendamientoId), HttpStatus.OK);
+    }
 
+    @GetMapping("/{agendamientoId}/suspender")
+    public ResponseEntity<Agendamiento> suspenderPorID(@PathVariable Long agendamientoId) {
+        return new ResponseEntity<>(agendamientoService.suspenderAgendamiento(agendamientoId), HttpStatus.OK);
+    }
 
+    @GetMapping("/{vecinoId}/veragendamientos")
+    public ResponseEntity<List<Agendamiento>> verAgendamientosPorVecino(@PathVariable LocalDateTime fechaHora, @PathVariable Long vecinoId){
+        return new ResponseEntity<>(agendamientoService.agendamientosbyVecinoId(fechaHora, vecinoId), HttpStatus.OK);
+    }
 
+    @GetMapping("/{tramiteId}/veragendamientos")
+    public ResponseEntity<List<Agendamiento>> verAgendamientosPorTramite(@PathVariable LocalDateTime fechaHora, @PathVariable Long tramiteId){
+        return new ResponseEntity<>(agendamientoService.agendamientosbyTramiteId(fechaHora, tramiteId), HttpStatus.OK);
+    }
 }

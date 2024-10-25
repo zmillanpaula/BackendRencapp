@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 //Anotaciones
 @Service
@@ -57,7 +59,22 @@ public class AgendamientoServiceImpl implements AgendamientoService{
         return nuevoAgendamiento;
     }
 
-   // public void Agendamiento eliminarAgendamiento() {}
+    public Agendamiento findById(Long agendamientoId) {
+        return agendamientoRepository.findById(agendamientoId).get();
+    }
 
+   public Agendamiento suspenderAgendamiento(Long agendamientoId) {
+        Agendamiento agendamientoSeleccionado = agendamientoRepository.findById(agendamientoId).get();
+        agendamientoSeleccionado.setEstado(Agendamiento.estadoAgendamiento.CANCELADA);
+        return agendamientoRepository.save(agendamientoSeleccionado);
+   }
+
+   public List<Agendamiento> agendamientosbyVecinoId(LocalDateTime fechaHora, Long vecinoId) {
+        return agendamientoRepository.findAllByFechaHoraAndVecinoId(fechaHora, vecinoId);
+   }
+
+    public List<Agendamiento> agendamientosbyTramiteId(LocalDateTime fechaHora , Long tramiteId) {
+        return agendamientoRepository.findAllByFechaHoraAndTramiteId(fechaHora, tramiteId);
+    }
 
 }

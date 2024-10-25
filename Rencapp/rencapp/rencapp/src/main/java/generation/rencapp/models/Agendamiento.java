@@ -34,7 +34,7 @@ public class Agendamiento {
     @Enumerated(EnumType.STRING)
     private estadoAgendamiento estado;
 
-    private enum estadoAgendamiento {
+    public enum estadoAgendamiento {
         AGENDADA,
         CANCELADA
     }
