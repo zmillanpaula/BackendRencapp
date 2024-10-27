@@ -1,4 +1,4 @@
-package generation.rencapp.services;
+/*package generation.rencapp.services;
 
 
 import generation.rencapp.models.Notificacion;
@@ -13,4 +13,4 @@ public interface NotificacionService {
     List<Notificacion> obtenerNotificacionesPorUsuario(Long usuarioId);
 
     void marcarComoLeida(Long notificacionId);
-}
+}*/

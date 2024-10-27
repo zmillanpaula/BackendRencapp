@@ -1,4 +1,4 @@
-package generation.rencapp.models;
+/*package generation.rencapp.models;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -34,3 +34,4 @@ public class Notificacion {
 
 
 }
+*/

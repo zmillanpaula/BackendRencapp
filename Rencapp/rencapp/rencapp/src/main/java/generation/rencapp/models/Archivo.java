@@ -27,9 +27,9 @@ public class Archivo {
 
     /******************* RELACIONES ************/
 
-    @OneToOne
+  /*  @OneToOne
     @JoinColumn(name ="archivo_id", nullable = false)
     private Archivo archivo;
 
-
+*/
 }

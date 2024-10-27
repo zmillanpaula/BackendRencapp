@@ -36,10 +36,10 @@ public class Funcionario extends Usuario{
 
     @ManyToMany
     @JoinTable(//Al tener una relacion de N a N, indicamos nombre de la tabla relacional
-            name = "departamentos_funcionarios",
+            name = "tramites_funcionarios",
             joinColumns = @JoinColumn(name = "funcionario_id"),//Nombre de la columna que lleva la llave foránea
-            inverseJoinColumns = @JoinColumn(name = "departamento_id"))//Nombre de la columna de  la otra entidad
-    private List<Departamento> departamentos;
+            inverseJoinColumns = @JoinColumn(name = "tramite_id"))//Nombre de la columna de  la otra entidad
+    private List<Tramite> tramites;
 
 
 

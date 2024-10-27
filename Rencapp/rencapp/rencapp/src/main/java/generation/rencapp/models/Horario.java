@@ -34,6 +34,8 @@ public class Horario {
     @JsonFormat(pattern = "HH:mm")
     private LocalTime horaFin;
 
+    private LocalDateTime fechaHora;
+
 
     @Enumerated(EnumType.STRING)
     private EstadoHorario estado;

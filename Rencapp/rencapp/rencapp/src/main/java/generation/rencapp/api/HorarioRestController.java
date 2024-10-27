@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -104,7 +105,7 @@ public class HorarioRestController {
     /** GENERAR INTÉRVALOS DE UNA HORA A PARTIR DEL ID DEL FUNCIONARIO Y FECHA DEL HORARIO CREADO **/
     @GetMapping("/disponibilidad/{funcionarioId}")
     public ResponseEntity<List<LocalTime>> findIntervalosByFuncionarioIdAndFecha(@PathVariable Long funcionarioId,
-                                                                            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fecha) {
+                                                                            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDateTime fecha) {
         //Creamos una variable para almacenar la lista
         List<LocalTime> intervalosDisponibles = horarioServiceImpl.obtenerIntervalosDeUnaHora(funcionarioId, fecha);
 

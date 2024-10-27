@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -14,7 +15,7 @@ public interface HorarioRepository extends JpaRepository<Horario, Long> {
 
     List<Horario> findByFuncionarioId(Long id);
 
-    Horario findByFuncionarioIdAndFecha(Long id, LocalDate fecha);
+    Horario findByFuncionarioIdAndFecha(Long id, LocalDateTime fechaHora);
 
 
 }

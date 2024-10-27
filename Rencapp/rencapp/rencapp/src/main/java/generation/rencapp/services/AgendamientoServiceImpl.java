@@ -32,16 +32,16 @@ public class AgendamientoServiceImpl implements AgendamientoService{
 
     //Método para agendar cita
     @Override
-    public Agendamiento agendar(Long funcionarioId, Long vecinoId, LocalDate fecha, LocalTime hora) {
+    public Agendamiento agendar(Long funcionarioId, Long vecinoId, LocalDateTime fechaHora) {
         //1-) Validar si la hora esta contenida dentro del intervalo y guardamos el resultado en una variable
-        boolean esValido = horarioServiceImpl.validarAgendamientoDentroDelHorario(funcionarioId, fecha, hora);
+        boolean esValido = horarioServiceImpl.validarAgendamientoDentroDelHorario(funcionarioId, fechaHora);
 
         if (!esValido) {
             throw new IllegalArgumentException("La hora indicada no está disponible");
         }
 
         //2-) Validar que no exista otra cita con el doctor a la misma hora
-        boolean existeAgendamiento = agendamientoRepository.existsByFuncionarioIdAndFechaAndHora(funcionarioId, fecha, hora);
+        boolean existeAgendamiento = agendamientoRepository.existsByFechaHoraAndFuncionarioId(fechaHora, funcionarioId);
 
         if (existeAgendamiento) {
             throw new IllegalArgumentException("La hora indicada ya está ocupada");
@@ -51,7 +51,7 @@ public class AgendamientoServiceImpl implements AgendamientoService{
         Agendamiento nuevoAgendamiento = Agendamiento.builder()
                 .vecino(vecinoRepository.findById(vecinoId).get())
                 .funcionario(funcionarioRepository.findById(funcionarioId).get())
-                /*.fechaHora(fechaHora)     preguntar*/
+                .fechaHora(fechaHora)
                 .build();
 
         agendamientoRepository.save(nuevoAgendamiento);

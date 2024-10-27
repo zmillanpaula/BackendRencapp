@@ -7,6 +7,7 @@ import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,9 +55,10 @@ public class HorarioServiceImpl implements HorarioService {
 
     //
 
-    public List<LocalTime> obtenerIntervalosDeUnaHora(Long funcionarioId, LocalDate fecha) {
+    public List<LocalTime> obtenerIntervalosDeUnaHora(Long funcionarioId, LocalDateTime fechaHora) {
         //horario creado se guarda en una variable
-        Horario horario = horarioRepository.findByFuncionarioIdAndFecha(funcionarioId, fecha);
+        LocalDateTime fecha = fechaHora.toLocalDate().atStartOfDay();
+        Horario horario = horarioRepository.findByFuncionarioIdAndFecha(funcionarioId,fecha);
 
         if(horario == null) {
             return new ArrayList<>();
@@ -80,9 +82,9 @@ public class HorarioServiceImpl implements HorarioService {
         return intervalos;
     }
 
-    public boolean validarAgendamientoDentroDelHorario(Long funcionarioId, LocalDate fecha, LocalTime hora) {
-        List<LocalTime> intervalosDisponibles = obtenerIntervalosDeUnaHora(funcionarioId, fecha);
-        return intervalosDisponibles.contains(hora);
+    public boolean validarAgendamientoDentroDelHorario(Long funcionarioId, LocalDateTime horaFecha) {
+        List<LocalTime> intervalosDisponibles = obtenerIntervalosDeUnaHora(funcionarioId, horaFecha);
+        return intervalosDisponibles.contains(horaFecha);
     }
 
 

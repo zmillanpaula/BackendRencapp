@@ -1,3 +1,4 @@
+/*
 package generation.rencapp.email;
 
 import com.sendgrid.Method;
@@ -46,3 +47,4 @@ public class EmailService {
         }
     }
 }
+*/

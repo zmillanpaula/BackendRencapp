@@ -20,7 +20,5 @@ public class Departamento {
 
     private String nombre;
 
-    @ManyToMany(mappedBy = "departamentos")
-    private List<Funcionario> funcionarios;
 
 }

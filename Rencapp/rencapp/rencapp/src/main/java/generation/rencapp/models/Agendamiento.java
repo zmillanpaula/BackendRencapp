@@ -29,6 +29,8 @@ public class Agendamiento {
     @JsonFormat(pattern = "YYYY-M-DD-HH:mm")
     private LocalDateTime fechaHora;
 
+    private LocalDate fecha;
+
     private String motivo;
 
     @Enumerated(EnumType.STRING)

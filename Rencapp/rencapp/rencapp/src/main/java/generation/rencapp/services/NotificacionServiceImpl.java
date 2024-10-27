@@ -1,4 +1,4 @@
-package generation.rencapp.services;
+/*package generation.rencapp.services;
 
 import generation.rencapp.email.EmailService;
 import generation.rencapp.models.Notificacion;
@@ -20,12 +20,11 @@ public class NotificacionServiceImpl implements NotificacionService{
     @Autowired
     private EmailService emailService;
 
-
-    //Método para crear notificación
+  //Método para crear notificación
     public Notificacion crearNotificacion(Usuario usuario, String mensaje) {
         /***NOTIFICACIÓN DENTRO DEL SISTEMA***/
         //Creamos nuestra nueva instancia de la notificación con patrón Builder()
-        Notificacion notificacion = Notificacion.builder()
+        /*Notificacion notificacion = Notificacion.builder()
                 .usuario(usuario)
                 .mensaje(mensaje)
                 //Seteamos la fecha y hora de creación a través del método estático now() de la clase LocalDateTime
@@ -35,7 +34,7 @@ public class NotificacionServiceImpl implements NotificacionService{
                 .build();
         notificacionRepository.save(notificacion);
 
-        /***NOTIFICACIÓN POR MAIL***/
+
         //Validamos que el usuario tenga un mail asociado (Que sea distinto de null o que no esté vacío
         if (usuario.getEmail() != null && !usuario.getEmail().isEmpty()) {
             try {
@@ -65,3 +64,4 @@ public class NotificacionServiceImpl implements NotificacionService{
     }
 
 }
+*/

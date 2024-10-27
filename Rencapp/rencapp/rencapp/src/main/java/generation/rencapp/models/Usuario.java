@@ -40,7 +40,7 @@ public class Usuario {
 
         @Enumerated(EnumType.STRING)//Anotación para indicar que el valor del atributo va a tomarse de una enumeración
         @Column(nullable = false)
-        private TipoUsuario tipoUsuario;
+        private TipoUsuario tipo;
 
         //Atributos de auditoría, me permiten conocer la fecha de creación y de la última edición
         @CreationTimestamp//Anotación para generar el almacenamiento de la fecha de creación

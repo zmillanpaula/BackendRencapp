@@ -3,6 +3,7 @@ package generation.rencapp.services;
 import generation.rencapp.models.Horario;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface HorarioService {
 
     List<Horario> findHorarioByEstado(String estado);
 
-    List<LocalTime> obtenerIntervalosDeUnaHora(Long funcionarioId, LocalDate fecha);
+    List<LocalTime> obtenerIntervalosDeUnaHora(Long funcionarioId, LocalDateTime fechaHora);
 
     List<LocalTime> generarIntervalos(LocalTime horaInicio, LocalTime horaFin);
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface AgendamientoService {
 
-    Agendamiento agendar(Long funcionarioId, Long vecinoId, LocalDate fecha, LocalTime hora);
+    Agendamiento agendar(Long funcionarioId, Long vecinoId, LocalDateTime fechaHora);
 
     Agendamiento findById(Long agendamientoId);
 

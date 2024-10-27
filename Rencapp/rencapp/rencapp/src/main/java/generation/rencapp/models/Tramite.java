@@ -21,7 +21,7 @@ public class Tramite {
 
     private String nombre;
 
-    @ManyToMany(mappedBy = "tramite")
+    @ManyToMany(mappedBy = "tramites")
     private List<Funcionario> funcionarios;
 
     @OneToMany(mappedBy = "tramite", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

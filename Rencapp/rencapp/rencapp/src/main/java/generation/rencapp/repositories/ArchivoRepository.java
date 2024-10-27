@@ -1,4 +1,4 @@
-package generation.rencapp.repositories;
+/*package generation.rencapp.repositories;
 
 import generation.rencapp.models.Archivo;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,3 +11,4 @@ public interface ArchivoRepository extends JpaRepository<Archivo, Long> {
     List<Archivo> findByVecinoId(Long pacienteId);
     List<Archivo> findByAgendamientoId(Long citaId);
 }
+*/
