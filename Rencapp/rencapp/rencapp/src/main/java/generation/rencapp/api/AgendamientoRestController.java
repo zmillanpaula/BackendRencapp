@@ -33,13 +33,12 @@ public class AgendamientoRestController {
     /** GENERAR NUEVA CITA CON EL ID DEL FUNCIONARIO Y EL ID DEL VECINO **/
     //Método post para generar la nueva cita
     @PostMapping("/{usuarioId}")
-    public ResponseEntity<Agendamiento> agendar(@PathVariable Long funcionarioId,
-                                            @PathVariable Long vecinoId,
+    public ResponseEntity<Agendamiento> agendar(@PathVariable Long usuarioId,
                                             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd-HH:mm") LocalDateTime fechaHora) {
                                          //   @RequestParam @DateTimeFormat(pattern = "HH:mm") LocalTime hora ) {
 
         //Llamado al servicio de envío de mail
-        Agendamiento nuevoAgendamiento = agendamientoService.agendar(funcionarioId, vecinoId, fechaHora);
+        Agendamiento nuevoAgendamiento = agendamientoService.agendar(usuarioId, fechaHora);
 
 
        /* //Creacion de las notificaciones para funcionario y vecino
@@ -53,30 +52,32 @@ public class AgendamientoRestController {
 */
 
 
-        return new ResponseEntity<>(agendamientoService.agendar(funcionarioId, vecinoId, fechaHora), HttpStatus.OK);
+        return new ResponseEntity<>(agendamientoService.agendar(usuarioId, fechaHora), HttpStatus.OK);
 
     }
 
-    //metodo get para mostrar agendamiento por id
-    @GetMapping("/{agendamientoId}/")
+    //metodo get para mostrar agendamiento por id LISTOCO
+    @GetMapping("/porcita/{agendamientoId}")
     public ResponseEntity<Agendamiento> verPorID(@PathVariable Long agendamientoId) {
-        return new ResponseEntity<>(agendamientoService.findById(agendamientoId), HttpStatus.OK);
+        return new ResponseEntity<>(agendamientoService.buscarPorId(agendamientoId), HttpStatus.OK);
     }
 
 
-    //metodo get
+    //metodo get LISTOCO
     @GetMapping("/{agendamientoId}/suspender")
     public ResponseEntity<Agendamiento> suspenderPorID(@PathVariable Long agendamientoId) {
         return new ResponseEntity<>(agendamientoService.suspenderAgendamiento(agendamientoId), HttpStatus.OK);
     }
 
-    @GetMapping("/{vecinoId}/ver")
-    public ResponseEntity<List<Agendamiento>> verAgendamientosPorVecino(@PathVariable LocalDateTime fechaHora, @PathVariable Long vecinoId){
-        return new ResponseEntity<>(agendamientoService.agendamientosbyVecinoId(fechaHora, vecinoId), HttpStatus.OK);
+    //METODO GET LISTOCO
+    @GetMapping("/{usuarioId}/ver")
+    public ResponseEntity<List<Agendamiento>> verAgendamientosPorVecino(@PathVariable Long usuarioId, @RequestParam String tipo){
+        return new ResponseEntity<>(agendamientoService.agendamientosbyVecinoId(usuarioId, tipo), HttpStatus.OK);
     }
 
+    //METODO GET LISTOCO
     @GetMapping("/{tramiteId}/veragendamientos")
-    public ResponseEntity<List<Agendamiento>> verAgendamientosPorTramite(@PathVariable LocalDateTime fechaHora, @PathVariable Long tramiteId){
-        return new ResponseEntity<>(agendamientoService.agendamientosbyTramiteId(fechaHora, tramiteId), HttpStatus.OK);
+    public ResponseEntity<List<Agendamiento>> verAgendamientosPorTramite(@PathVariable Long tramiteId){
+        return new ResponseEntity<>(agendamientoService.agendamientosbyTramiteId(tramiteId), HttpStatus.OK);
     }
 }

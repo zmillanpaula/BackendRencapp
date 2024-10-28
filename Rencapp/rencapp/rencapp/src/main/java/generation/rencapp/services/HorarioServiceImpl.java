@@ -82,10 +82,10 @@ public class HorarioServiceImpl implements HorarioService {
         return intervalos;
     }
 
-    public boolean validarAgendamientoDentroDelHorario(Long funcionarioId, LocalDateTime horaFecha) {
+   /* public boolean validarAgendamientoDentroDelHorario(Long funcionarioId, LocalDateTime horaFecha) {
         List<LocalTime> intervalosDisponibles = obtenerIntervalosDeUnaHora(funcionarioId, horaFecha);
         return intervalosDisponibles.contains(horaFecha);
-    }
+    } */
 
 
 }

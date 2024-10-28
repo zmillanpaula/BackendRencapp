@@ -32,9 +32,4 @@ public class Vecino  extends Usuario{
 
     /***************RELACIONES**********************/
 
-
-    @OneToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
-
 }

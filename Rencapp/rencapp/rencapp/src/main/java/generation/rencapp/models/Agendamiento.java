@@ -26,7 +26,7 @@ public class Agendamiento {
     private long id;
 
 
-    @JsonFormat(pattern = "YYYY-M-DD-HH:mm")
+    @JsonFormat(pattern = "YYYY-MM-DD-HH:mm")
     private LocalDateTime fechaHora;
 
     private LocalDate fecha;
@@ -44,17 +44,14 @@ public class Agendamiento {
         /***************RELACIONES ********************/
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "vecino_id", nullable = false)
-    private Vecino vecino;
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "tramite_id", nullable = false)
     private Tramite tramite;
 
-    @ManyToOne
-    @JoinColumn(name = "agendamientos_funcionarios", nullable = false)
-    private Funcionario funcionario;
 
     //manytomany
    // @ManyToMany

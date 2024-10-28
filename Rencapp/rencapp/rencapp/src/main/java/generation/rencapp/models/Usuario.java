@@ -52,18 +52,6 @@ public class Usuario {
         /******ESPACIO PARA OTROS ATRIBUTOS*******/
         //Relaciones en Java se indican mediante anotaciones para que Hibernate cree las llaves foráneas en las tablas correspondientes
 
-        @JsonIgnore
-        @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)//Relación de 1 a 1
-        private Funcionario funcionario;
-
-
-        @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
-        private Vecino vecino;
-
-
-
-
-        /*****************************************/
 
 }
 

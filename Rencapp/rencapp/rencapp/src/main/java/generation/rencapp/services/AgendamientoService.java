@@ -9,15 +9,15 @@ import java.util.List;
 
 public interface AgendamientoService {
 
-    Agendamiento agendar(Long funcionarioId, Long vecinoId, LocalDateTime fechaHora);
+    Agendamiento agendar(Long usuarioId, LocalDateTime fechaHora);
 
-    Agendamiento findById(Long agendamientoId);
+    Agendamiento buscarPorId(Long agendamientoId);
 
     Agendamiento suspenderAgendamiento(Long agendamientoId);
 
-    List<Agendamiento> agendamientosbyVecinoId(LocalDateTime fechaHora, Long vecinoId);
+    List<Agendamiento> agendamientosbyVecinoId(Long usuarioId, String tipo);
 
-    List<Agendamiento> agendamientosbyTramiteId(LocalDateTime fechaHora , Long tramiteId);
+    List<Agendamiento> agendamientosbyTramiteId(Long tramiteId);
 
 
 }
