@@ -1,11 +1,8 @@
 package generation.rencapp.services;
 
 import generation.rencapp.models.TipoUsuario;
-import generation.rencapp.repositories.AgendamientoRepository;
-import generation.rencapp.repositories.UsuarioRepository;
-import generation.rencapp.repositories.VecinoRepository;
+import generation.rencapp.repositories.*;
 import generation.rencapp.models.Agendamiento;
-import generation.rencapp.repositories.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,10 +30,13 @@ public class AgendamientoServiceImpl implements AgendamientoService{
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private TramiteRepository tramiteRepository;
+
 
     //Método para agendar cita
     @Override
-    public Agendamiento agendar( Long usuarioId, LocalDateTime fechaHora) {
+    public Agendamiento agendar( Long usuarioId, LocalDateTime fechaHora, Long tramiteId) {
         //1-) Validar si la hora esta contenida dentro del intervalo y guardamos el resultado en una variable
        /* boolean esValido = horarioServiceImpl.validarAgendamientoDentroDelHorario(usuarioId, fechaHora);
 
@@ -55,6 +55,9 @@ public class AgendamientoServiceImpl implements AgendamientoService{
         Agendamiento nuevoAgendamiento = Agendamiento.builder()
                 .usuario(usuarioRepository.findById(usuarioId).get())
                 .fechaHora(fechaHora)
+                .fecha(fechaHora.toLocalDate())
+                .tramite(tramiteRepository.findById(tramiteId).get())
+                .estado(Agendamiento.estadoAgendamiento.AGENDADA)
                 .build();
 
         agendamientoRepository.save(nuevoAgendamiento);

@@ -32,13 +32,13 @@ public class AgendamientoRestController {
 
     /** GENERAR NUEVA CITA CON EL ID DEL FUNCIONARIO Y EL ID DEL VECINO **/
     //Método post para generar la nueva cita
-    @PostMapping("/{usuarioId}")
+    @PostMapping("/agendar/{usuarioId}/{tramiteId}")
     public ResponseEntity<Agendamiento> agendar(@PathVariable Long usuarioId,
-                                            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd-HH:mm") LocalDateTime fechaHora) {
+                                            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd-HH:mm") LocalDateTime fechaHora, @PathVariable Long tramiteId) {
                                          //   @RequestParam @DateTimeFormat(pattern = "HH:mm") LocalTime hora ) {
 
         //Llamado al servicio de envío de mail
-        Agendamiento nuevoAgendamiento = agendamientoService.agendar(usuarioId, fechaHora);
+       // Agendamiento nuevoAgendamiento = agendamientoService.agendar(usuarioId, fechaHora, );
 
 
        /* //Creacion de las notificaciones para funcionario y vecino
@@ -52,7 +52,7 @@ public class AgendamientoRestController {
 */
 
 
-        return new ResponseEntity<>(agendamientoService.agendar(usuarioId, fechaHora), HttpStatus.OK);
+        return new ResponseEntity<>(agendamientoService.agendar(usuarioId, fechaHora, tramiteId), HttpStatus.OK);
 
     }
 

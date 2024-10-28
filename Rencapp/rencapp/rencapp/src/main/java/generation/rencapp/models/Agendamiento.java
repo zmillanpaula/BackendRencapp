@@ -26,12 +26,10 @@ public class Agendamiento {
     private long id;
 
 
-    @JsonFormat(pattern = "YYYY-MM-DD-HH:mm")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime fechaHora;
 
     private LocalDate fecha;
-
-    private String motivo;
 
     @Enumerated(EnumType.STRING)
     private estadoAgendamiento estado;
