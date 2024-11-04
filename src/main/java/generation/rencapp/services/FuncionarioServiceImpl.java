@@ -3,12 +3,15 @@ package generation.rencapp.services;
 import generation.rencapp.models.Funcionario;
 import generation.rencapp.repositories.FuncionarioRepository;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
     @Service
+    @Transactional
+    @AllArgsConstructor
 
     public class FuncionarioServiceImpl implements FuncionarioService {
     //Inyeccion de depencias

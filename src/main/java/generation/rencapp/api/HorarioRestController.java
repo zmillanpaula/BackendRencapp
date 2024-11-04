@@ -7,6 +7,7 @@ import generation.rencapp.models.Tramite;
 import generation.rencapp.services.FuncionarioServiceImpl;
 import generation.rencapp.services.HorarioServiceImpl;
 import generation.rencapp.services.TramiteServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,9 +24,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/horarios")
+@CrossOrigin("*")
 public class HorarioRestController {
 
-    /** INYECCIÓN DE DEPENDENCIAS **/
+    /**
+     * INYECCIÓN DE DEPENDENCIAS
+     **/
     @Autowired
     private HorarioServiceImpl horarioServiceImpl;
 
@@ -34,7 +38,9 @@ public class HorarioRestController {
     @Autowired
     private TramiteServiceImpl tramiteServiceImpl;
 
-    /** OBTENER LISTA DE TODOS LOS HORARIOS CREADOS **/
+    /**
+     * OBTENER LISTA DE TODOS LOS HORARIOS CREADOS
+     **/
     //Clase ResponseEntity<List<Horario>> permite manipular el status de la respuesta
     @GetMapping("/lista")
     public ResponseEntity<List<Horario>> findAllHorario() {
@@ -44,7 +50,9 @@ public class HorarioRestController {
         return new ResponseEntity<>(listaHorarios, HttpStatus.OK);
     }
 
-    /** OBTENER HORARIO POR ID **/
+    /**
+     * OBTENER HORARIO POR ID
+     **/
     //Al no conocer el tipo de dato que se va a retornar podemos indicar que se retorna un responseEntity<?>
     //@PathVariable = localhost/api/horarios/5
     @GetMapping("/{id}")
@@ -60,7 +68,8 @@ public class HorarioRestController {
     } */
     //RequestParam = localhost/api/horarios?estado=DISPONIBLE
 
-    /** CREAR NUEVO HORARIO PARA FUNCIONARIO CON EL ID DE FUNCIONARIO **/
+    /** CREAR NUEVO HORARIO PARA UN TRAMITE **/
+    @Operation(summary = "Crea un rango horario para un trámite")
     @GetMapping("/nuevo/{tramiteId}/{fecha}")
     public ResponseEntity<?> saveHorarioNuevo(@PathVariable LocalDate fecha,
                                               @PathVariable Long tramiteId) {
@@ -77,6 +86,7 @@ public class HorarioRestController {
     }
 
     /** EDITAR HORARIO POR ID **/
+
     //PUT es el método HTTP para trabajar con edición
     //ID del horario va a ser la variable o criterio de búsqueda del horario a editar
     //Va a recibir un objeto de tipo Horario con los campos editados
@@ -112,6 +122,7 @@ public class HorarioRestController {
 
 
     /** GENERAR INTÉRVALOS DE UNA HORA A PARTIR DEL ID DEL FUNCIONARIO Y FECHA DEL HORARIO CREADO **/
+    @Operation(summary = "Genera intervalos de una hora en base al rango horario de un trámite")
     @GetMapping("/disponibilidad/{tramiteId}/{horarioId}")
     public ResponseEntity<List<Intervalos>> findIntervalosByTramiteIdAndFecha(@PathVariable Long tramiteId, @PathVariable Long horarioId, @RequestParam String fecha) {
 

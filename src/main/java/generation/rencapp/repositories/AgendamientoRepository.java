@@ -22,7 +22,7 @@ public interface AgendamientoRepository extends JpaRepository<Agendamiento, Long
 
     List<Agendamiento> findAllByTramiteId(Long tramiteId);
 
-
+    List<Agendamiento> findAllByFechaAndTramiteId( LocalDate fecha, Long tramiteId);
 
 
 }

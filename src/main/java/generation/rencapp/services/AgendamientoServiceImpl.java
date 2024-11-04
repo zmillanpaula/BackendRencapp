@@ -85,4 +85,8 @@ public class AgendamientoServiceImpl implements AgendamientoService{
         return agendamientoRepository.findAllByTramiteId(tramiteId);
     }
 
+    public List<Agendamiento> agendamientosbyFechaAndTramiteId(LocalDate fecha, Long tramiteId) {
+        return agendamientoRepository.findAllByFechaAndTramiteId(fecha, tramiteId);
+    }
+
 }

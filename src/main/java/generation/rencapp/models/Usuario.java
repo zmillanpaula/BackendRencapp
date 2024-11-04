@@ -1,6 +1,7 @@
 package generation.rencapp.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Builder
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_usuario", discriminatorType = DiscriminatorType.STRING)
 
@@ -26,6 +28,7 @@ public class Usuario {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @JsonProperty("id")
         private long id;
 
 

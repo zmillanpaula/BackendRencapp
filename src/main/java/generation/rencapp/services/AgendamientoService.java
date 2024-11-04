@@ -19,5 +19,5 @@ public interface AgendamientoService {
 
     List<Agendamiento> agendamientosbyTramiteId(Long tramiteId);
 
-
+    List<Agendamiento> agendamientosbyFechaAndTramiteId(LocalDate fecha, Long tramiteId);
 }
